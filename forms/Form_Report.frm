@@ -1073,10 +1073,10 @@ Private Sub Form_Load()
 End Sub
 
 Public Sub formatDataGrid()
-    dg_orders.Columns(6).NumberFormat = "##,##0.00"
-    dg_purchase.Columns(6).NumberFormat = "##,##0.00"
-    dg_products.Columns(7).NumberFormat = "##,##0.00"
-    dg_products.Columns(9).NumberFormat = "##,##0.00"
+    dg_orders.Columns(6).NumberFormat = "###,###.00"
+    dg_purchase.Columns(6).NumberFormat = "###,###.00"
+    dg_products.Columns(7).NumberFormat = "###,###.00"
+    dg_products.Columns(9).NumberFormat = "###,###.00"
 End Sub
 
 Private Sub Option3_Click()

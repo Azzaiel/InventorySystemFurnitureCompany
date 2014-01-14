@@ -481,8 +481,8 @@ Public Sub Form_Load()
                                         "SELECT * FROM tbl_product WHERE Quantity <= Critical_Point")
                                         
   With dg_products
-     .Columns(7).NumberFormat = "##,##0.00"
-     .Columns(9).NumberFormat = "##,##0.00"
+     .Columns(7).NumberFormat = "###,###.00"
+     .Columns(9).NumberFormat = "###,###.00"
   End With
   
 End Sub

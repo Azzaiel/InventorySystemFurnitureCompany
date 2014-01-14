@@ -196,6 +196,7 @@ Begin VB.Form Form_Product
       _ExtentX        =   17595
       _ExtentY        =   14843
       _Version        =   393216
+      Tab             =   2
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -208,7 +209,7 @@ Begin VB.Form Form_Product
       EndProperty
       TabCaption(0)   =   "Product Information"
       TabPicture(0)   =   "Form_Product.frx":C4CB
-      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "Label6"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "Label5"
@@ -282,7 +283,7 @@ Begin VB.Form Form_Product
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Purchase Information"
       TabPicture(2)   =   "Form_Product.frx":C503
-      Tab(2).ControlEnabled=   0   'False
+      Tab(2).ControlEnabled=   -1  'True
       Tab(2).Control(0)=   "dg_purchase"
       Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "btn_report_purchase"
@@ -294,7 +295,7 @@ Begin VB.Form Form_Product
       Tab(2).ControlCount=   4
       Begin VB.TextBox txt_supplierID 
          Height          =   375
-         Left            =   7440
+         Left            =   -67560
          TabIndex        =   50
          Top             =   2760
          Visible         =   0   'False
@@ -302,7 +303,7 @@ Begin VB.Form Form_Product
       End
       Begin VB.TextBox txt_oldid 
          Height          =   375
-         Left            =   7680
+         Left            =   -67320
          TabIndex        =   49
          Top             =   4800
          Visible         =   0   'False
@@ -310,7 +311,7 @@ Begin VB.Form Form_Product
       End
       Begin VB.TextBox txt_op 
          Height          =   375
-         Left            =   7680
+         Left            =   -67320
          TabIndex        =   47
          Top             =   5280
          Visible         =   0   'False
@@ -327,14 +328,14 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   -73800
+         Left            =   1200
          TabIndex        =   44
          Top             =   600
          Width           =   5655
       End
       Begin VB.CommandButton btn_search_purchase 
          Height          =   495
-         Left            =   -67920
+         Left            =   7080
          Picture         =   "Form_Product.frx":C51F
          Style           =   1  'Graphical
          TabIndex        =   46
@@ -343,7 +344,7 @@ Begin VB.Form Form_Product
       End
       Begin VB.CommandButton btn_report_purchase 
          Height          =   495
-         Left            =   -66840
+         Left            =   8160
          Picture         =   "Form_Product.frx":D32C
          Style           =   1  'Graphical
          TabIndex        =   48
@@ -397,7 +398,7 @@ Begin VB.Form Form_Product
          EndProperty
          Height          =   360
          ItemData        =   "Form_Product.frx":10249
-         Left            =   2040
+         Left            =   -72960
          List            =   "Form_Product.frx":1025C
          TabIndex        =   19
          Top             =   6000
@@ -415,7 +416,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   2040
+         Left            =   -72960
          TabIndex        =   14
          Top             =   3600
          Width           =   4815
@@ -432,7 +433,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   2040
+         Left            =   -72960
          TabIndex        =   11
          Top             =   1800
          Width           =   4815
@@ -449,7 +450,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   2040
+         Left            =   -72960
          TabIndex        =   18
          Top             =   5520
          Width           =   4815
@@ -466,7 +467,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   2280
+         Left            =   -72720
          TabIndex        =   17
          Top             =   5040
          Width           =   4575
@@ -483,7 +484,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   2040
+         Left            =   -72960
          TabIndex        =   16
          Top             =   4560
          Width           =   4815
@@ -500,7 +501,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   2280
+         Left            =   -72720
          TabIndex        =   15
          Top             =   4080
          Width           =   4575
@@ -517,7 +518,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   2040
+         Left            =   -72960
          TabIndex        =   9
          Top             =   840
          Width           =   4815
@@ -534,7 +535,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   2040
+         Left            =   -72960
          TabIndex        =   10
          Top             =   1320
          Width           =   4815
@@ -551,7 +552,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   2040
+         Left            =   -72960
          TabIndex        =   12
          Top             =   2280
          Width           =   4815
@@ -568,7 +569,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   735
-         Left            =   2040
+         Left            =   -72960
          MultiLine       =   -1  'True
          TabIndex        =   13
          Top             =   2760
@@ -576,7 +577,7 @@ Begin VB.Form Form_Product
       End
       Begin VB.CommandButton btn_save 
          Height          =   495
-         Left            =   2040
+         Left            =   -72960
          Picture         =   "Form_Product.frx":10290
          Style           =   1  'Graphical
          TabIndex        =   20
@@ -585,7 +586,7 @@ Begin VB.Form Form_Product
       End
       Begin VB.CommandButton btn_clear 
          Height          =   495
-         Left            =   3840
+         Left            =   -71160
          Picture         =   "Form_Product.frx":10F5D
          Style           =   1  'Graphical
          TabIndex        =   21
@@ -604,7 +605,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   975
-         Left            =   6120
+         Left            =   -68880
          TabIndex        =   27
          Top             =   7320
          Width           =   3735
@@ -694,7 +695,7 @@ Begin VB.Form Form_Product
       End
       Begin MSDataGridLib.DataGrid dg_purchase 
          Height          =   6255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   43
          Top             =   1200
          Width           =   9495
@@ -769,7 +770,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   2040
+         Left            =   -72960
          TabIndex        =   52
          Top             =   5040
          Width           =   255
@@ -786,7 +787,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   2040
+         Left            =   -72960
          TabIndex        =   51
          Top             =   4080
          Width           =   255
@@ -804,7 +805,7 @@ Begin VB.Form Form_Product
          EndProperty
          ForeColor       =   &H000000FF&
          Height          =   300
-         Left            =   7080
+         Left            =   -67920
          TabIndex        =   45
          Top             =   1920
          Width           =   2775
@@ -821,7 +822,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   41
          Top             =   6000
          Width           =   1575
@@ -838,7 +839,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   40
          Top             =   5520
          Width           =   1575
@@ -855,7 +856,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   39
          Top             =   5040
          Width           =   1575
@@ -872,7 +873,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   38
          Top             =   4560
          Width           =   1575
@@ -889,7 +890,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   37
          Top             =   4080
          Width           =   1575
@@ -906,7 +907,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   36
          Top             =   960
          Width           =   1455
@@ -923,7 +924,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   35
          Top             =   1440
          Width           =   1695
@@ -940,7 +941,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   34
          Top             =   1920
          Width           =   1815
@@ -957,7 +958,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   33
          Top             =   2400
          Width           =   1815
@@ -974,7 +975,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   30
          Top             =   2880
          Width           =   1815
@@ -991,7 +992,7 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   28
          Top             =   3600
          Width           =   1575
@@ -1202,6 +1203,7 @@ Private Sub btn_search_Click()
     opt_discontinue.Value = False
     Call set_datagrid(dg_products, rs_product, _
                                         "SELECT * FROM tbl_product WHERE Product_ID = '" & txt_search.Text & "' OR Product_Name = '" & txt_search.Text & "' OR Category = '" & txt_search.Text & "' OR Brand = '" & txt_search.Text & "' OR Initial_Supplier = '" & txt_search.Text & "' OR Remark = '" & txt_search.Text & "'")
+    Call formatProductDataGrid
     If rs_product.RecordCount = 0 Then
         MsgBox "Record not found."
     End If
@@ -1220,6 +1222,7 @@ Private Sub btn_search_purchase_Click()
      Call set_datagrid(dg_purchase, rs_purchase, _
                                         "SELECT *  FROM tbl_purchase WHERE (Product_ID='" & rs_product.Fields("Product_ID").Value & "') AND (Purchase_ID = '" & txt_search_purchase.Text & "' OR Purchase_Date = '" & txt_search_purchase.Text & "' OR Customer_Name = '" & txt_search_purchase.Text & "' OR Person_In_Charge = '" & txt_search_purchase.Text & "' OR Expected_Delivery = '" & txt_search_purchase.Text & "' OR Remark = '" & txt_search_purchase.Text & "')")
                 
+     Call formatPurchaseDataGrid
                 If rs_purchase.RecordCount = 0 Then
                     MsgBox "Record not found."
                     Exit Sub
@@ -1234,6 +1237,12 @@ End Sub
 Private Sub cmb_remark_KeyUp(KeyCode As Integer, Shift As Integer)
     MsgBox "Please choose remark from the list."
     cmb_remark.Text = ""
+End Sub
+
+Private Sub formatPurchaseDataGrid()
+  With dg_purchase
+    .Columns(6).NumberFormat = "###,###.00"
+  End With
 End Sub
 
 Private Sub dg_products_Click()
@@ -1256,11 +1265,13 @@ Private Sub dg_products_Click()
                                         "SELECT *  FROM tbl_order WHERE Product_ID='" & rs_product.Fields("Product_ID").Value & "'")
      Call set_datagrid(dg_purchase, rs_purchase, _
                                         "SELECT *  FROM tbl_purchase WHERE Product_ID='" & rs_product.Fields("Product_ID").Value & "'")
+    Call formatPurchaseDataGrid
 End Sub
 
 Private Sub Form_Load()
      Call set_datagrid(dg_products, rs_product, _
                                         "SELECT * FROM tbl_product")
+    Call formatProductDataGrid
                                         
     Call mysql_select(public_rs, "SELECT * FROM tbl_category")
     cmb_category.Clear
@@ -1320,6 +1331,14 @@ Public Sub clear_all()
     txt_critical.Text = ""
     cmb_remark.Text = ""
 End Sub
+
+Private Sub formatProductDataGrid()
+  With dg_products
+    .Columns(7).NumberFormat = "###,###.00"
+    .Columns(9).NumberFormat = "###,###.00"
+  End With
+End Sub
+
 Private Sub Label12_Click()
      Call load_form(Form_Category, True)
     Call mysql_select(public_rs, "SELECT * FROM tbl_category")
@@ -1333,36 +1352,42 @@ End Sub
 Private Sub opt_active_Click()
      Call set_datagrid(dg_products, rs_product, _
                                         "SELECT * FROM tbl_product WHERE Remark = 'Active'")
+    Call formatProductDataGrid
     txt_search.Text = ""
 End Sub
 
 Private Sub opt_all_Click()
      Call set_datagrid(dg_products, rs_product, _
                                         "SELECT * FROM tbl_product ")
+     Call formatProductDataGrid
     txt_search.Text = ""
 End Sub
 
 Private Sub opt_damaged_Click()
       Call set_datagrid(dg_products, rs_product, _
                                         "SELECT * FROM tbl_product WHERE Remark = 'Damaged'")
+    Call formatProductDataGrid
     txt_search.Text = ""
 End Sub
 
 Private Sub opt_discontinue_Click()
     Call set_datagrid(dg_products, rs_product, _
                                         "SELECT * FROM tbl_product WHERE Remark = 'Phase-Out'")
+    Call formatProductDataGrid
     txt_search.Text = ""
 End Sub
 
 Private Sub opt_pull_Click()
       Call set_datagrid(dg_products, rs_product, _
                                         "SELECT * FROM tbl_product WHERE Remark = 'Pull-Out'")
+    Call formatProductDataGrid
     txt_search.Text = ""
 End Sub
 
 Private Sub opt_reserved_Click()
       Call set_datagrid(dg_products, rs_product, _
                                         "SELECT * FROM tbl_product WHERE Remark = 'Reserved'")
+    Call formatProductDataGrid
     txt_search.Text = ""
 End Sub
 
@@ -1404,6 +1429,7 @@ Private Sub txt_search_KeyUp(KeyCode As Integer, Shift As Integer)
     opt_discontinue.Value = False
     Call set_datagrid(dg_products, rs_product, _
                                         "SELECT * FROM tbl_product WHERE Product_ID LIKE '%" & txt_search.Text & "%' OR Product_Name LIKE '%" & txt_search.Text & "%' OR Category LIKE '%" & txt_search.Text & "%' OR Brand LIKE '%" & txt_search.Text & "%' OR Initial_Supplier LIKE '%" & txt_search.Text & "%' OR Remark LIKE '%" & txt_search.Text & "%'")
+    Call formatProductDataGrid
 End Sub
 
 Private Sub txt_search_order_KeyUp(KeyCode As Integer, Shift As Integer)
@@ -1414,4 +1440,5 @@ End Sub
 Private Sub txt_search_purchase_KeyUp(KeyCode As Integer, Shift As Integer)
      Call set_datagrid(dg_purchase, rs_purchase, _
                                         "SELECT *  FROM tbl_purchase WHERE (Product_ID='" & rs_product.Fields("Product_ID").Value & "') AND (Purchase_ID LIKE '%" & txt_search_purchase.Text & "%' OR Purchase_Date LIKE '%" & txt_search_purchase.Text & "%' OR Customer_Name LIKE '%" & txt_search_purchase.Text & "%' OR Person_In_Charge LIKE '%" & txt_search_purchase.Text & "%' OR Expected_Delivery LIKE '%" & txt_search_purchase.Text & "%' OR Remark LIKE '%" & txt_search_purchase.Text & "%')")
+     Call formatPurchaseDataGrid
 End Sub
