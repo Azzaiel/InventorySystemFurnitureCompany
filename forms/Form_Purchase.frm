@@ -690,7 +690,7 @@ Begin VB.Form Form_Purchase
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   8323073
+         Format          =   109182977
          CurrentDate     =   41518
       End
       Begin MSDataGridLib.DataGrid dg_purchase 
@@ -842,7 +842,7 @@ Begin VB.Form Form_Purchase
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   8323073
+         Format          =   109182977
          CurrentDate     =   41518
       End
       Begin MSComCtl2.DTPicker date_delivery 
@@ -863,7 +863,7 @@ Begin VB.Form Form_Purchase
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   8323073
+         Format          =   109182977
          CurrentDate     =   41518
       End
       Begin MSComCtl2.DTPicker date_delivery2 
@@ -884,7 +884,7 @@ Begin VB.Form Form_Purchase
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   8323073
+         Format          =   109182977
          CurrentDate     =   41518
       End
       Begin VB.Label Label34 
@@ -1475,7 +1475,7 @@ Private Sub btn_payment_Click()
     Dim amount As String
     Dim payment As Double
     amount = InputBox("Enter an amount:", "Payment")
-    txt_amount.Text = amount
+    txt_amount.Text = Format(amount, "###,###.00")
     
     payment = val(amount)
     If payment < all Then
@@ -1485,7 +1485,7 @@ Private Sub btn_payment_Click()
         btn_purchase.Enabled = False
         Exit Sub
     Else
-        txt_change.Text = Str(payment - all)
+        txt_change.Text = Format(Str(payment - all), "###,###.00")
         btn_purchase.Enabled = True
     End If
 End Sub
@@ -1505,21 +1505,21 @@ Private Sub btn_purchase_Click()
        Call mysql_select(rs_cashier, "SELECT * FROM tbl_users WHERE Username='" & Form_Main.lbl_username.Caption & "'")
         dr_receipt.Sections(2).Controls("lbl_date").Caption = Now
         dr_receipt.Sections(2).Controls("lbl_cashier").Caption = rs_cashier.Fields("Lastname").Value & ", " & rs_cashier.Fields("Firstname").Value
-         dr_receipt.Sections(5).Controls("lbl_total").Caption = Format(val(txt_total_purchase.Text), "##,##0.00")
-        dr_receipt.Sections(5).Controls("lbl_tax").Caption = Format(val(txt_tax.Text), "##,##0.00")
-         dr_receipt.Sections(5).Controls("lbl_amount").Caption = Format(val(txt_amount.Text), "##,##0.00")
-        dr_receipt.Sections(5).Controls("lbl_change").Caption = Format(val(txt_change.Text), "##,##0.00")
+         dr_receipt.Sections(5).Controls("lbl_total").Caption = txt_total_purchase.Text
+        dr_receipt.Sections(5).Controls("lbl_tax").Caption = txt_tax.Text
+         dr_receipt.Sections(5).Controls("lbl_amount").Caption = txt_amount.Text
+        dr_receipt.Sections(5).Controls("lbl_change").Caption = txt_change.Text
     Set dr_receipt.DataSource = rs_temp
     dr_receipt.Show vbModal, Me
 End If
      
      Dim rsTempPurchase As New ADODB.Recordset
      Dim rsProduct As New ADODB.Recordset
-     Call mysql_select(rsTempPurchase, "SELECT * FROM tbl_temp_purchase")
+     Call mysql_select(rsTempPurchase, "SELECT * FROM tbl_temp_purchase Where Remark <> 'Pending' ")
      
      rsTempPurchase.MoveFirst
      While Not (rsTempPurchase.EOF)
-       Call mysql_select(rsProduct, "SELECT * FROM tbl_product WHERE Product_ID='" & rsTempPurchase!PRODUCT_ID & "'")
+       Call mysql_select(rsProduct, "SELECT * FROM tbl_product WHERE Product_ID='" & rsTempPurchase!PRODUCT_ID & "' ")
        If (rsProduct.RecordCount > 0) Then
          rsProduct!Quantity = val(rsProduct!Quantity) - val(rsTempPurchase!Quantity)
          rsProduct.Update
@@ -1676,6 +1676,7 @@ End Sub
 Private Sub btn_search2_Click()
      Call set_datagrid(dg_pending, rs_pending, _
                                         "SELECT * FROM tbl_purchase WHERE Remark = 'Pending' AND (Purchase_ID = '" & txt_search.Text & "' OR Purchase_Date = '" & txt_search.Text & "' OR Customer_Name = '" & txt_search.Text & "' OR Person_In_Charge = '" & txt_search.Text & "' OR Product_ID = '" & txt_search.Text & "' OR Remark = '" & txt_search.Text & "' OR Expected_Delivery = '" & txt_search.Text & "') ")
+     Call formatPendingDataGrid
      dg_pending.Columns(3).Visible = False
             If rs_pending.RecordCount = 0 Then
                 MsgBox "Record not found."
@@ -1787,6 +1788,11 @@ Else
        txt_price.Text = public_rs.Fields("Cost").Value
 End If
 End Sub
+Private Sub formatPendingDataGrid()
+  With dg_pending
+    .Columns(6).NumberFormat = "###,###.00"
+  End With
+End Sub
 
 Public Sub Form_Load()
       Call clear_all
@@ -1804,17 +1810,19 @@ Public Sub Form_Load()
     Call set_datagrid(dg_purchase, rs_temp, _
                                         "SELECT * FROM tbl_temp_purchase where Remark <> 'Pending' ")
       dg_purchase.Columns(3).Visible = False
+     
      Call mysql_select(public_rs, "SELECT * FROM tbl_temp_purchase where Remark <> 'Pending' ")
      all = 0
      While Not public_rs.EOF
         all = all + val(public_rs.Fields("Total").Value)
         public_rs.MoveNext
     Wend
-    txt_total_purchase.Text = Str(all)
+    txt_total_purchase.Text = Format(Str(all), "###,###.00")
     tax = all * 0.12
-    txt_tax.Text = Str(tax)
+    txt_tax.Text = Format(Str(tax), "###,###.00")
      Call set_datagrid(dg_pending, rs_pending, _
                                         "SELECT * FROM tbl_purchase WHERE Remark='Pending'")
+     Call formatPendingDataGrid
     dg_pending.Columns(3).Visible = False
     tab_purchase.Tab = 0
     
@@ -1824,7 +1832,7 @@ Public Sub Form_Load()
 End Sub
 Private Sub formatDataGrid()
   With dg_purchase
-    .Columns(6).NumberFormat = "##,##0.00"
+    .Columns(6).NumberFormat = "###,###.00"
   End With
 End Sub
 
@@ -1883,4 +1891,6 @@ End Sub
 Private Sub txt_search_KeyUp(KeyCode As Integer, Shift As Integer)
      Call set_datagrid(dg_pending, rs_pending, _
                                         "SELECT * FROM tbl_purchase WHERE Remark='Pending' AND (Purchase_ID LIKE '%" & txt_search.Text & "%' OR Purchase_Date LIKE '%" & txt_search.Text & "%' OR Customer_Name LIKE '%" & txt_search.Text & "%' OR Person_In_Charge LIKE '%" & txt_search.Text & "%' OR Product_ID LIKE '%" & txt_search.Text & "%' OR Remark LIKE '%" & txt_search.Text & "%' OR Expected_Delivery LIKE '%" & txt_search.Text & "%' )")
+    Call formatPendingDataGrid
 End Sub
+
