@@ -394,7 +394,7 @@ Begin VB.Form Form_Main
       EndProperty
       ForeColor       =   &H000080FF&
       Height          =   615
-      Left            =   -120
+      Left            =   0
       TabIndex        =   16
       Top             =   2520
       Width           =   6105
@@ -428,8 +428,19 @@ Private Sub btn_database_Click()
 End Sub
 
 Private Sub btn_logout_Click()
-    
-       Unload Me
+Unload Me
+    sql_string = "UPDATE " _
+                                & "tbl_logs " _
+                            & "SET " _
+                                & "Logout = '" & Now & "'" _
+                            & "WHERE " _
+                                & " Username = '" & lbl_username.Caption & "' AND Logout='None'"
+                Call mysql_select(rs_logs, sql_string)
+       Form_Login.txt_username.Text = ""
+       Form_Login.txt_password.Text = ""
+       Call load_form(Form_Login, True)
+       Call Form_Login.Form_Load
+       
 End Sub
 
 Private Sub btn_order_Click()
@@ -486,23 +497,6 @@ Public Sub Form_Load()
   End With
   
 End Sub
-
-Private Sub Form_Unload(Cancel As Integer)
-    sql_string = "UPDATE " _
-                                & "tbl_logs " _
-                            & "SET " _
-                                & "Logout = '" & Now & "'" _
-                            & "WHERE " _
-                                & " Username = '" & lbl_username.Caption & "' AND Logout='None'"
-                Call mysql_select(rs_logs, sql_string)
-                MsgBox "You have successfully logged out."
-       Form_Login.txt_username.Text = ""
-       Form_Login.txt_password.Text = ""
-       Call load_form(Form_Login, True)
-       Call Form_Login.Form_Load
-End Sub
-
-
 
 Private Sub mn_company_Click()
 

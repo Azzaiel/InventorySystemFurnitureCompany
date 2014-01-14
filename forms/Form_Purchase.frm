@@ -127,33 +127,33 @@ Begin VB.Form Form_Purchase
       TabCaption(1)   =   "Pending Purchase"
       TabPicture(1)   =   "Form_Purchase.frx":BF6F
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label23"
-      Tab(1).Control(1)=   "Label24"
-      Tab(1).Control(2)=   "Label22"
-      Tab(1).Control(3)=   "Label21"
-      Tab(1).Control(4)=   "Label20"
-      Tab(1).Control(5)=   "Label19"
-      Tab(1).Control(6)=   "Label18"
-      Tab(1).Control(7)=   "Label17"
-      Tab(1).Control(8)=   "Label15"
-      Tab(1).Control(9)=   "Label14"
-      Tab(1).Control(10)=   "Label33"
-      Tab(1).Control(11)=   "Label34"
-      Tab(1).Control(12)=   "date_delivery2"
+      Tab(1).Control(0)=   "txt_customer_2"
+      Tab(1).Control(1)=   "txt_purchase_no2"
+      Tab(1).Control(2)=   "txt_product_id2"
+      Tab(1).Control(3)=   "txt_product_name2"
+      Tab(1).Control(4)=   "txt_quantity2"
+      Tab(1).Control(5)=   "txt_price2"
+      Tab(1).Control(6)=   "txt_search"
+      Tab(1).Control(7)=   "btn_save2"
+      Tab(1).Control(8)=   "cmb_remark2"
+      Tab(1).Control(9)=   "txt_total2"
+      Tab(1).Control(10)=   "btn_search2"
+      Tab(1).Control(11)=   "btn_report"
+      Tab(1).Control(12)=   "dg_pending"
       Tab(1).Control(13)=   "date_purchase2"
-      Tab(1).Control(14)=   "dg_pending"
-      Tab(1).Control(15)=   "btn_report"
-      Tab(1).Control(16)=   "btn_search2"
-      Tab(1).Control(17)=   "txt_total2"
-      Tab(1).Control(18)=   "cmb_remark2"
-      Tab(1).Control(19)=   "btn_save2"
-      Tab(1).Control(20)=   "txt_search"
-      Tab(1).Control(21)=   "txt_price2"
-      Tab(1).Control(22)=   "txt_quantity2"
-      Tab(1).Control(23)=   "txt_product_name2"
-      Tab(1).Control(24)=   "txt_product_id2"
-      Tab(1).Control(25)=   "txt_purchase_no2"
-      Tab(1).Control(26)=   "txt_customer_2"
+      Tab(1).Control(14)=   "date_delivery2"
+      Tab(1).Control(15)=   "Label34"
+      Tab(1).Control(16)=   "Label33"
+      Tab(1).Control(17)=   "Label14"
+      Tab(1).Control(18)=   "Label15"
+      Tab(1).Control(19)=   "Label17"
+      Tab(1).Control(20)=   "Label18"
+      Tab(1).Control(21)=   "Label19"
+      Tab(1).Control(22)=   "Label20"
+      Tab(1).Control(23)=   "Label21"
+      Tab(1).Control(24)=   "Label22"
+      Tab(1).Control(25)=   "Label24"
+      Tab(1).Control(26)=   "Label23"
       Tab(1).ControlCount=   27
       Begin VB.TextBox txt_customer_2 
          BackColor       =   &H00E0E0E0&
@@ -690,7 +690,7 @@ Begin VB.Form Form_Purchase
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   109182977
+         Format          =   108068865
          CurrentDate     =   41518
       End
       Begin MSDataGridLib.DataGrid dg_purchase 
@@ -842,7 +842,7 @@ Begin VB.Form Form_Purchase
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   109182977
+         Format          =   108068865
          CurrentDate     =   41518
       End
       Begin MSComCtl2.DTPicker date_delivery 
@@ -863,7 +863,7 @@ Begin VB.Form Form_Purchase
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   109182977
+         Format          =   108068865
          CurrentDate     =   41518
       End
       Begin MSComCtl2.DTPicker date_delivery2 
@@ -884,7 +884,7 @@ Begin VB.Form Form_Purchase
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   109182977
+         Format          =   108068865
          CurrentDate     =   41518
       End
       Begin VB.Label Label34 
@@ -1719,7 +1719,7 @@ Private Sub cmb_person_KeyUp(KeyCode As Integer, Shift As Integer)
     cmb_person.Text = ""
 End Sub
 
-Public Sub cmb_remark_Click()
+Public Sub checkRemainingStock()
     quan = val(txt_quantity.Text)
      Call mysql_select(public_rs, "SELECT * FROM tbl_product WHERE Product_ID= '" & txt_product_id.Text & "'")
     If public_rs.RecordCount <> 0 Then
@@ -1878,7 +1878,7 @@ Private Sub txt_quantity_KeyUp(KeyCode As Integer, Shift As Integer)
     txt_quantity.Text = ""
      MsgBox "Invalid input."
 Else
-        Call cmb_remark_Click
+        Call checkRemainingStock
          quan = val(txt_quantity.Text)
         cost = val(txt_price.Text)
         

@@ -162,6 +162,7 @@ If no_log > 0 Then
                 Form_Main.security_password.Visible = False
             End If
         MsgBox "You have successfully logged in."
+          Unload Me
          Call load_form(Form_Main, True)
    End If
 End If

@@ -67,6 +67,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Public rs_logs As New ADODB.Recordset
 Private Sub btn_login_Click()
     If txt_password.Text = "" Then
         MsgBox "Please input the security password."
@@ -74,12 +75,25 @@ Private Sub btn_login_Click()
     Else
     Call mysql_select(public_rs, "SELECT * FROM tbl_password")
     If public_rs.Fields("Password").Value = txt_password.Text Then
-        Form_Login.txt_username.Text = ""
-        Form_Login.txt_password.Text = ""
-        Unload Me
-        Call Form_Login.Form_Load
+        ser_name = "Admin"
+        user_type = "Administrator"
+        Form_Main.lbl_username.Caption = user_name
+        Dim sql_string As String
+        sql_string = "INSERT INTO " _
+                        & "tbl_logs(Username,Login,Logout)" _
+                    & " VALUES (" _
+                        & "'" & user_name & "','" & Now & "','None')"
+            Call mysql_select(rs_logs, sql_string)
+                 Form_Main.btn_users.Enabled = True
+                Form_Main.security_password.Visible = True
+           
+        MsgBox "You have successfully logged in as Admin."
+          Unload Me
+          Call Unload(Form_Login)
+         Call load_form(Form_Main, True)
     Else
         MsgBox "Wrong security password."
     End If
 End If
 End Sub
+
