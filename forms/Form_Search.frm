@@ -148,7 +148,7 @@ If operation = "order" Then
 Else
      Form_Purchase.txt_product_id.Text = rs_product.Fields("Product_ID")
     Form_Purchase.txt_product_name.Text = rs_product.Fields("Product_Name")
-     Form_Purchase.txt_price.Text = rs_product.Fields("Unit_Price")
+     Form_Purchase.txt_price.Text = Format(rs_product.Fields("Unit_Price"), "###,###.00")
     Unload Me
 End If
 End Sub

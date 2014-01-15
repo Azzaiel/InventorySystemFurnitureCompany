@@ -127,33 +127,33 @@ Begin VB.Form Form_Purchase
       TabCaption(1)   =   "Pending Purchase"
       TabPicture(1)   =   "Form_Purchase.frx":BF6F
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "txt_customer_2"
-      Tab(1).Control(1)=   "txt_purchase_no2"
-      Tab(1).Control(2)=   "txt_product_id2"
-      Tab(1).Control(3)=   "txt_product_name2"
-      Tab(1).Control(4)=   "txt_quantity2"
-      Tab(1).Control(5)=   "txt_price2"
-      Tab(1).Control(6)=   "txt_search"
-      Tab(1).Control(7)=   "btn_save2"
-      Tab(1).Control(8)=   "cmb_remark2"
-      Tab(1).Control(9)=   "txt_total2"
-      Tab(1).Control(10)=   "btn_search2"
-      Tab(1).Control(11)=   "btn_report"
-      Tab(1).Control(12)=   "dg_pending"
+      Tab(1).Control(0)=   "Label23"
+      Tab(1).Control(1)=   "Label24"
+      Tab(1).Control(2)=   "Label22"
+      Tab(1).Control(3)=   "Label21"
+      Tab(1).Control(4)=   "Label20"
+      Tab(1).Control(5)=   "Label19"
+      Tab(1).Control(6)=   "Label18"
+      Tab(1).Control(7)=   "Label17"
+      Tab(1).Control(8)=   "Label15"
+      Tab(1).Control(9)=   "Label14"
+      Tab(1).Control(10)=   "Label33"
+      Tab(1).Control(11)=   "Label34"
+      Tab(1).Control(12)=   "date_delivery2"
       Tab(1).Control(13)=   "date_purchase2"
-      Tab(1).Control(14)=   "date_delivery2"
-      Tab(1).Control(15)=   "Label34"
-      Tab(1).Control(16)=   "Label33"
-      Tab(1).Control(17)=   "Label14"
-      Tab(1).Control(18)=   "Label15"
-      Tab(1).Control(19)=   "Label17"
-      Tab(1).Control(20)=   "Label18"
-      Tab(1).Control(21)=   "Label19"
-      Tab(1).Control(22)=   "Label20"
-      Tab(1).Control(23)=   "Label21"
-      Tab(1).Control(24)=   "Label22"
-      Tab(1).Control(25)=   "Label24"
-      Tab(1).Control(26)=   "Label23"
+      Tab(1).Control(14)=   "dg_pending"
+      Tab(1).Control(15)=   "btn_report"
+      Tab(1).Control(16)=   "btn_search2"
+      Tab(1).Control(17)=   "txt_total2"
+      Tab(1).Control(18)=   "cmb_remark2"
+      Tab(1).Control(19)=   "btn_save2"
+      Tab(1).Control(20)=   "txt_search"
+      Tab(1).Control(21)=   "txt_price2"
+      Tab(1).Control(22)=   "txt_quantity2"
+      Tab(1).Control(23)=   "txt_product_name2"
+      Tab(1).Control(24)=   "txt_product_id2"
+      Tab(1).Control(25)=   "txt_purchase_no2"
+      Tab(1).Control(26)=   "txt_customer_2"
       Tab(1).ControlCount=   27
       Begin VB.TextBox txt_customer_2 
          BackColor       =   &H00E0E0E0&
@@ -690,7 +690,7 @@ Begin VB.Form Form_Purchase
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   108068865
+         Format          =   45088769
          CurrentDate     =   41518
       End
       Begin MSDataGridLib.DataGrid dg_purchase 
@@ -842,7 +842,7 @@ Begin VB.Form Form_Purchase
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   108068865
+         Format          =   45088769
          CurrentDate     =   41518
       End
       Begin MSComCtl2.DTPicker date_delivery 
@@ -863,7 +863,7 @@ Begin VB.Form Form_Purchase
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   108068865
+         Format          =   45088769
          CurrentDate     =   41518
       End
       Begin MSComCtl2.DTPicker date_delivery2 
@@ -884,7 +884,7 @@ Begin VB.Form Form_Purchase
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   108068865
+         Format          =   45088769
          CurrentDate     =   41518
       End
       Begin VB.Label Label34 
@@ -1582,7 +1582,7 @@ Private Sub btn_save_Click()
                     & " VALUES (" _
                         & "'" & txt_purchase_no.Text & "', " & "'" & date_purchase.Value & "','" & txt_customer.Text & "','" _
                         & txt_customer.Text & "','" & txt_product_id.Text & "','" _
-                        & txt_quantity.Text & "','" & txt_total.Text & "','" & cmb_remark.Text & "','" & date_delivery.Value & "')"
+                        & txt_quantity.Text & "','" & Replace(txt_total.Text, ",", "") & "','" & cmb_remark.Text & "','" & date_delivery.Value & "')"
                         
             
            Call mysql_select(rs_purchase, sql_string)
@@ -1593,7 +1593,7 @@ Private Sub btn_save_Click()
                     & " VALUES (" _
                         & "'" & txt_purchase_no.Text & "','" & date_purchase.Value & "','" & txt_customer.Text & "','" _
                         & txt_customer.Text & "','" & txt_product_id.Text & "','" _
-                        & txt_quantity.Text & "','" & txt_total.Text & "','" & cmb_remark.Text & "','" & date_delivery.Value & "')"
+                        & txt_quantity.Text & "','" & Replace(txt_total.Text, ",", "") & "','" & cmb_remark.Text & "','" & date_delivery.Value & "')"
             
             Call mysql_select(rs_purchase, sql_string)
                   
@@ -1617,7 +1617,7 @@ Private Sub btn_save_Click()
                                 & "Purchase_Date = '" & date_purchase.Value & "', Customer_Name = '" & txt_customer.Text & "'," _
                                 & "Person_In_Charge = '" & txt_customer.Text & "',Product_ID = '" _
                                 & txt_product_id.Text & "',Quantity = '" & txt_quantity.Text & "',Total" _
-                                & " = '" & txt_total.Text & "', Remark= '" & cmb_remark.Text & "', Expected_Delivery='" & date_delivery.Value & "'" _
+                                & " = '" & Replace(txt_total.Text, ",", "") & "', Remark= '" & cmb_remark.Text & "', Expected_Delivery='" & date_delivery.Value & "'" _
                             & "WHERE " _
                                 & " Purchase_ID = " & txt_purchase_no.Text & ""
             Call mysql_select(rs_purchase, sql_string)
@@ -1627,7 +1627,7 @@ Private Sub btn_save_Click()
                                 & "Purchase_Date = '" & date_purchase.Value & "', Customer_Name = '" & txt_customer.Text & "'," _
                                 & "Person_In_Charge = '" & txt_customer.Text & "',Product_ID = '" _
                                 & txt_product_id.Text & "',Quantity = '" & txt_quantity.Text & "',Total" _
-                                & " = '" & txt_total.Text & "', Remark= '" & cmb_remark.Text & "', Expected_Delivery='" & date_delivery.Value & "'" _
+                                & " = '" & Replace(txt_total.Text, ",", "") & "', Remark= '" & cmb_remark.Text & "', Expected_Delivery='" & date_delivery.Value & "'" _
                             & "WHERE " _
                                 & " Purchase_ID = '" & txt_purchase_no.Text & "'"
             Call mysql_select(rs_purchase, sql_string)
@@ -1765,7 +1765,7 @@ Else
        date_delivery2.Value = rs_pending.Fields("Expected_Delivery").Value
        Call mysql_select(public_rs, "SELECT * FROM tbl_product WHERE Product_ID = '" & rs_pending.Fields("Product_ID").Value & "' ")
        txt_product_name2.Text = public_rs.Fields("Product_Name").Value
-       txt_price2.Text = public_rs.Fields("Cost").Value
+       txt_price2.Text = Format(public_rs.Fields("Cost").Value, "###,###.00")
 End If
 End Sub
 
@@ -1785,7 +1785,7 @@ Else
        date_delivery.Value = rs_temp.Fields("Expected_Delivery").Value
        Call mysql_select(public_rs, "SELECT * FROM tbl_product WHERE Product_ID = '" & rs_temp.Fields("Product_ID").Value & "' ")
        txt_product_name.Text = public_rs.Fields("Product_Name").Value
-       txt_price.Text = public_rs.Fields("Cost").Value
+       txt_price.Text = Format(public_rs.Fields("UNIT_PRICE").Value, "###,###.00")
 End If
 End Sub
 Private Sub formatPendingDataGrid()
@@ -1875,16 +1875,15 @@ End Sub
 
 Private Sub txt_quantity_KeyUp(KeyCode As Integer, Shift As Integer)
     If Not IsNumeric(txt_quantity.Text) Then
-    txt_quantity.Text = ""
-     MsgBox "Invalid input."
-Else
-        Call checkRemainingStock
-         quan = val(txt_quantity.Text)
-        cost = val(txt_price.Text)
-        
-        total = quan * cost
-        txt_total.Text = Str(total)
-        
+      txt_quantity.Text = ""
+      MsgBox "Invalid input."
+    Else
+      Call checkRemainingStock
+      quan = val(txt_quantity.Text)
+      cost = val(Replace(txt_price.Text, ",", ""))
+      
+      total = quan * cost
+      txt_total.Text = Format(Str(total), "###,###.00")
   End If
 End Sub
 
