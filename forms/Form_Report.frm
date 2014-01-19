@@ -25,7 +25,7 @@ Begin VB.Form Form_Report
       _ExtentY        =   12515
       _Version        =   393216
       Tabs            =   6
-      Tab             =   4
+      Tab             =   1
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -40,25 +40,29 @@ Begin VB.Form Form_Report
       TabPicture(0)   =   "Form_Report.frx":BF53
       Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "Frame1"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).ControlCount=   1
       TabCaption(1)   =   "Suppliers"
       TabPicture(1)   =   "Form_Report.frx":BF6F
-      Tab(1).ControlEnabled=   0   'False
+      Tab(1).ControlEnabled=   -1  'True
       Tab(1).Control(0)=   "Frame2"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).ControlCount=   1
       TabCaption(2)   =   "Customers"
       TabPicture(2)   =   "Form_Report.frx":BF8B
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "Frame3"
+      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
       TabCaption(3)   =   "Orders"
       TabPicture(3)   =   "Form_Report.frx":BFA7
       Tab(3).ControlEnabled=   0   'False
       Tab(3).Control(0)=   "Frame4"
+      Tab(3).Control(0).Enabled=   0   'False
       Tab(3).ControlCount=   1
       TabCaption(4)   =   "Purchase"
       TabPicture(4)   =   "Form_Report.frx":BFC3
-      Tab(4).ControlEnabled=   -1  'True
+      Tab(4).ControlEnabled=   0   'False
       Tab(4).Control(0)=   "Frame5"
       Tab(4).Control(0).Enabled=   0   'False
       Tab(4).ControlCount=   1
@@ -66,6 +70,7 @@ Begin VB.Form Form_Report
       TabPicture(5)   =   "Form_Report.frx":BFDF
       Tab(5).ControlEnabled=   0   'False
       Tab(5).Control(0)=   "Frame6"
+      Tab(5).Control(0).Enabled=   0   'False
       Tab(5).ControlCount=   1
       Begin VB.Frame Frame6 
          BackColor       =   &H00FFFFFF&
@@ -197,7 +202,7 @@ Begin VB.Form Form_Report
             Strikethrough   =   0   'False
          EndProperty
          Height          =   6135
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   33
          Top             =   840
          Width           =   10695
@@ -548,7 +553,7 @@ Begin VB.Form Form_Report
             Strikethrough   =   0   'False
          EndProperty
          Height          =   6135
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   27
          Top             =   840
          Width           =   10695
@@ -1068,7 +1073,8 @@ Private Sub Form_Load()
   
      Call formatDataGrid
   
-
+    SSTab1.TabVisible(2) = False
+    SSTab1.TabVisible(3) = False
 
 End Sub
 

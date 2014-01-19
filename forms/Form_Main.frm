@@ -472,11 +472,14 @@ Private Sub dg_products_Click()
     If rs_product.RecordCount = 0 Then
         MsgBox "No selected record."
     Else
-        Form_Order.tab_order.Tab = 0
-        Form_Order.txt_product_id.Text = rs_product.Fields("Product_ID").Value
-        Form_Order.txt_product_name.Text = rs_product.Fields("Product_Name").Value
-        Form_Order.txt_price.Text = rs_product.Fields("Cost").Value
-        Call load_form(Form_Order, True)
+        'Form_Order.tab_order.Tab = 0
+        'Form_Order.txt_product_id.Text = rs_product.Fields("Product_ID").Value
+        'Form_Order.txt_product_name.Text = rs_product.Fields("Product_Name").Value
+        'Form_Order.txt_price.Text = rs_product.Fields("Cost").Value
+        Call load_form(Form_Product, True)
+          Call set_datagrid(dg_products, rs_product, _
+                                        "SELECT * FROM tbl_product WHERE Quantity <= Critical_Point")
+
     End If
 End Sub
 

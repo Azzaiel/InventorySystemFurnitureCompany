@@ -15,6 +15,7 @@ Begin VB.Form Form_Product
    ScaleHeight     =   8790
    ScaleWidth      =   14460
    StartUpPosition =   2  'CenterScreen
+   Visible         =   0   'False
    Begin VB.Frame Frame2 
       BackColor       =   &H00FFFFFF&
       Caption         =   "Product Search"
@@ -196,7 +197,7 @@ Begin VB.Form Form_Product
       _ExtentX        =   17595
       _ExtentY        =   14843
       _Version        =   393216
-      Tab             =   2
+      Tab             =   1
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -275,23 +276,23 @@ Begin VB.Form Form_Product
       Tab(0).ControlCount=   31
       TabCaption(1)   =   "Order Information"
       TabPicture(1)   =   "Form_Product.frx":C4E7
-      Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "txt_search_order"
-      Tab(1).Control(1)=   "btn_search_order"
-      Tab(1).Control(2)=   "btn_report_order"
-      Tab(1).Control(3)=   "dg_order"
+      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).Control(0)=   "dg_order"
+      Tab(1).Control(0).Enabled=   0   'False
+      Tab(1).Control(1)=   "btn_report_order"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "btn_search_order"
+      Tab(1).Control(2).Enabled=   0   'False
+      Tab(1).Control(3)=   "txt_search_order"
+      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Purchase Information"
       TabPicture(2)   =   "Form_Product.frx":C503
-      Tab(2).ControlEnabled=   -1  'True
-      Tab(2).Control(0)=   "dg_purchase"
-      Tab(2).Control(0).Enabled=   0   'False
-      Tab(2).Control(1)=   "btn_report_purchase"
-      Tab(2).Control(1).Enabled=   0   'False
-      Tab(2).Control(2)=   "btn_search_purchase"
-      Tab(2).Control(2).Enabled=   0   'False
-      Tab(2).Control(3)=   "txt_search_purchase"
-      Tab(2).Control(3).Enabled=   0   'False
+      Tab(2).ControlEnabled=   0   'False
+      Tab(2).Control(0)=   "txt_search_purchase"
+      Tab(2).Control(1)=   "btn_search_purchase"
+      Tab(2).Control(2)=   "btn_report_purchase"
+      Tab(2).Control(3)=   "dg_purchase"
       Tab(2).ControlCount=   4
       Begin VB.TextBox txt_supplierID 
          Height          =   375
@@ -328,14 +329,14 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   1200
+         Left            =   -73800
          TabIndex        =   44
          Top             =   600
          Width           =   5655
       End
       Begin VB.CommandButton btn_search_purchase 
          Height          =   495
-         Left            =   7080
+         Left            =   -67920
          Picture         =   "Form_Product.frx":C51F
          Style           =   1  'Graphical
          TabIndex        =   46
@@ -344,7 +345,7 @@ Begin VB.Form Form_Product
       End
       Begin VB.CommandButton btn_report_purchase 
          Height          =   495
-         Left            =   8160
+         Left            =   -66840
          Picture         =   "Form_Product.frx":D32C
          Style           =   1  'Graphical
          TabIndex        =   48
@@ -362,14 +363,14 @@ Begin VB.Form Form_Product
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   -73800
+         Left            =   1200
          TabIndex        =   29
          Top             =   600
          Width           =   5655
       End
       Begin VB.CommandButton btn_search_order 
          Height          =   495
-         Left            =   -67920
+         Left            =   7080
          Picture         =   "Form_Product.frx":E3B4
          Style           =   1  'Graphical
          TabIndex        =   32
@@ -378,7 +379,7 @@ Begin VB.Form Form_Product
       End
       Begin VB.CommandButton btn_report_order 
          Height          =   495
-         Left            =   -66840
+         Left            =   8160
          Picture         =   "Form_Product.frx":F1C1
          Style           =   1  'Graphical
          TabIndex        =   31
@@ -630,7 +631,7 @@ Begin VB.Form Form_Product
       End
       Begin MSDataGridLib.DataGrid dg_order 
          Height          =   6255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   42
          Top             =   1200
          Width           =   9495
@@ -695,7 +696,7 @@ Begin VB.Form Form_Product
       End
       Begin MSDataGridLib.DataGrid dg_purchase 
          Height          =   6255
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   43
          Top             =   1200
          Width           =   9495
@@ -1270,7 +1271,7 @@ End Sub
 
 Private Sub Form_Load()
      Call set_datagrid(dg_products, rs_product, _
-                                        "SELECT * FROM tbl_product")
+                                        "SELECT * FROM tbl_product order by no desc")
     Call formatProductDataGrid
                                         
     Call mysql_select(public_rs, "SELECT * FROM tbl_category")
@@ -1291,6 +1292,9 @@ Private Sub Form_Load()
     Call clear_all
     Call disable_all
     tab_product.Tab = 0
+    
+    tab_product.TabVisible(1) = False
+    
 End Sub
 Public Sub enable_all()
     txt_id.Enabled = True

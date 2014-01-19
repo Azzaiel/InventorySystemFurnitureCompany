@@ -158,7 +158,7 @@ If no_log > 0 Then
             Else
                 Form_Main.btn_users.Enabled = False
                 Form_Main.btn_database.Enabled = False
-                Form_Choose.btn_sales.Enabled = False
+                'Form_Choose.btn_sales.Enabled = False
                 Form_Main.security_password.Visible = False
             End If
         MsgBox "You have successfully logged in."

@@ -5,13 +5,13 @@ Begin VB.Form Form_Database
    ClientHeight    =   2775
    ClientLeft      =   45
    ClientTop       =   375
-   ClientWidth     =   5535
+   ClientWidth     =   3210
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    Picture         =   "Form_Database.frx":0000
    ScaleHeight     =   2775
-   ScaleWidth      =   5535
+   ScaleWidth      =   3210
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame Frame1 
       BackColor       =   &H00FFFFFF&
@@ -29,7 +29,7 @@ Begin VB.Form Form_Database
       Left            =   240
       TabIndex        =   2
       Top             =   120
-      Width           =   5055
+      Width           =   2655
       Begin VB.CommandButton btn_restore 
          Height          =   1815
          Left            =   2760
